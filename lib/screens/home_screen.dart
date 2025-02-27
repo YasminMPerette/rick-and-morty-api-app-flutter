@@ -40,7 +40,28 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: characters.length,
               itemBuilder: (context, index) {
                 final character = characters[index];
-                return Placeholder();
+                return Card(
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: ListTile(
+                      leading: CachedNetworkImage(
+                        imageUrl: character.image
+                         width: 50,
+                         height: 50,
+                         fit: BoxFit.cover,
+                         placeholder: (context, url)=>
+                         const CircularProgressIndicator(),
+                         errorWidget: (context, url, erro) =>
+                         const Icon(Icons.error),
+                         ),
+              
+                     
+                      title: Text(character.name),
+                      subtitle: Text('Status: ${character.status}'),
+                    ));
               },
             );
           }
